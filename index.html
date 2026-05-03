@@ -23,22 +23,14 @@
     --text: #f0ede8;
     --muted: rgba(255,255,255,.38);
   }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    min-height: 100vh;
-    font-size: 14px;
-  }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); min-height: 100vh; font-size: 14px; }
 
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 0 40px; height: 60px;
     display: flex; align-items: center; justify-content: space-between;
-    background: rgba(12,12,12,.9);
-    backdrop-filter: blur(20px);
+    background: rgba(12,12,12,.9); backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo { display: flex; align-items: center; text-decoration: none; }
@@ -52,104 +44,45 @@
   .nav-back:hover { color: var(--text); }
 
   /* ── HERO ── */
-  .hero {
-    padding: 120px 40px 60px;
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .hero-eyebrow {
-    font-size: 9px; font-weight: 600; letter-spacing: 4px;
-    text-transform: uppercase; color: rgba(255,255,255,.5);
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(44px, 7vw, 80px);
-    font-weight: 400; font-style: italic;
-    line-height: .95; letter-spacing: -1px;
-    color: var(--text); margin-bottom: 16px;
-  }
-  .hero p {
-    font-size: 15px; color: var(--muted);
-    line-height: 1.7; font-weight: 300;
-    max-width: 460px; margin: 0 auto;
-  }
+  .hero { padding: 120px 40px 60px; max-width: 680px; margin: 0 auto; text-align: center; }
+  .hero-eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 16px; }
+  .hero h1 { font-family: var(--font-heading); font-size: clamp(44px, 7vw, 80px); font-weight: 400; font-style: italic; line-height: .95; letter-spacing: -1px; color: var(--text); margin-bottom: 16px; }
+  .hero p { font-size: 15px; color: var(--muted); line-height: 1.7; font-weight: 300; max-width: 460px; margin: 0 auto; }
 
   /* ── FORM ── */
-  .form-wrap {
-    max-width: 640px; margin: 0 auto;
-    padding: 0 40px 100px;
-  }
+  .form-wrap { max-width: 640px; margin: 0 auto; padding: 0 40px 100px; }
 
-  /* Progress bar */
   .progress-wrap { margin-bottom: 48px; }
-  .progress-label {
-    display: flex; justify-content: space-between;
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 10px;
-  }
+  .progress-label { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
   .progress-bar { height: 1px; background: var(--border); border-radius: 1px; }
-  .progress-fill {
-    height: 100%; background: var(--accent);
-    border-radius: 1px; transition: width .5s ease;
-    width: 0%;
-  }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 1px; transition: width .5s ease; width: 0%; }
 
-  /* Question blocks */
-  .q-block {
-    margin-bottom: 40px;
-    animation: fadeUp .4s ease both;
-  }
+  .q-block { margin-bottom: 40px; animation: fadeUp .4s ease both; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
-  .q-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 2px;
-    text-transform: uppercase; color: rgba(255,255,255,.5);
-    margin-bottom: 8px;
-  }
-  .q-title {
-    font-family: var(--font-heading);
-    font-size: 22px; font-weight: 400; font-style: italic;
-    color: var(--text); margin-bottom: 16px; line-height: 1.2;
-  }
-  .q-sub {
-    font-size: 12px; color: var(--muted);
-    margin-top: -10px; margin-bottom: 16px; line-height: 1.5;
-  }
+  .q-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+  .q-title { font-family: var(--font-heading); font-size: 22px; font-weight: 400; font-style: italic; color: var(--text); margin-bottom: 16px; line-height: 1.2; }
+  .q-sub { font-size: 12px; color: var(--muted); margin-top: -10px; margin-bottom: 16px; line-height: 1.5; }
 
-  /* Text inputs */
   .input-field {
-    width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border-dk);
-    border-radius: 8px;
-    padding: 14px 16px;
-    color: var(--text);
-    font-family: var(--font-body); font-size: 15px;
-    outline: none; transition: border-color .2s;
+    width: 100%; background: var(--card); border: 1px solid var(--border-dk);
+    border-radius: 8px; padding: 14px 16px; color: var(--text);
+    font-family: var(--font-body); font-size: 15px; outline: none; transition: border-color .2s;
   }
   .input-field:focus { border-color: rgba(255,255,255,.5); }
   .input-field::placeholder { color: rgba(255,255,255,.2); }
   textarea.input-field { resize: none; min-height: 100px; line-height: 1.6; }
 
-  /* Option pills */
-  .options-grid {
-    display: flex; flex-wrap: wrap; gap: 8px;
-  }
+  .options-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .options-grid.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
   .opt-label { display: none; }
   .opt-btn {
-    display: block; width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border-dk);
-    border-radius: 8px;
-    padding: 13px 18px;
-    color: var(--muted);
+    display: block; width: 100%; background: var(--card);
+    border: 1px solid var(--border-dk); border-radius: 8px;
+    padding: 13px 18px; color: var(--muted);
     font-family: var(--font-body); font-size: 13px;
-    text-align: left; cursor: pointer;
-    transition: all .18s; line-height: 1.3;
+    text-align: left; cursor: pointer; transition: all .18s; line-height: 1.3;
   }
   .opt-btn:hover { border-color: rgba(255,255,255,.3); color: var(--text); background: rgba(255,255,255,.05); }
   input[type="radio"]:checked + .opt-btn,
@@ -159,34 +92,19 @@
     color: var(--text);
   }
 
-  /* Scale pills (1-5) */
   .scale-wrap { display: flex; gap: 8px; flex-wrap: wrap; }
   .scale-item { flex: 1; min-width: 52px; }
-  .scale-item .opt-btn {
-    text-align: center; padding: 14px 8px;
-    font-size: 16px; font-family: var(--font-heading);
-    font-style: italic;
-  }
+  .scale-item .opt-btn { text-align: center; padding: 14px 8px; font-size: 16px; font-family: var(--font-heading); font-style: italic; }
 
-  /* Other input */
   .other-input-wrap { display: none; margin-top: 8px; }
   .other-input-wrap.show { display: block; }
 
-  /* Divider between questions */
   .q-divider { height: 1px; background: var(--border); margin: 40px 0; }
 
-  /* Instagram note */
-  .insta-note {
-    background: var(--accent-light);
-    border: 1px solid rgba(203,89,87,.2);
-    border-radius: 8px; padding: 14px 16px;
-    font-size: 13px; color: rgba(255,255,255,.6);
-    margin-top: 10px; line-height: 1.5;
-  }
+  .insta-note { background: var(--accent-light); border: 1px solid rgba(203,89,87,.2); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: rgba(255,255,255,.6); margin-top: 10px; line-height: 1.5; }
   .insta-note a { color: rgba(255,255,255,.5); text-decoration: none; }
   .insta-note a:hover { text-decoration: underline; }
 
-  /* Submit */
   .submit-wrap { margin-top: 48px; text-align: center; }
   .submit-btn {
     display: inline-flex; align-items: center; gap: 10px;
@@ -194,45 +112,22 @@
     background: var(--accent); color: #fff;
     font-family: var(--font-body); font-size: 13px;
     font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    border: none; cursor: pointer;
-    transition: all .22s;
+    border: none; cursor: pointer; transition: all .22s;
   }
   .submit-btn:hover { background: var(--accent-hover); box-shadow: 0 8px 32px var(--accent-glow); transform: translateY(-2px); }
   .submit-btn:disabled { background: rgba(255,255,255,.1); color: var(--muted); cursor: not-allowed; transform: none; box-shadow: none; }
-
   .submit-note { font-size: 11px; color: var(--muted); margin-top: 14px; }
 
   /* ── SUCCESS ── */
-  .success-screen {
-    display: none;
-    min-height: 100vh;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 40px;
-    flex-direction: column;
-  }
+  .success-screen { display: none; min-height: 100vh; align-items: center; justify-content: center; text-align: center; padding: 40px; flex-direction: column; }
   .success-screen.show { display: flex; }
   .success-icon { font-size: 48px; margin-bottom: 24px; }
-  .success-screen h2 {
-    font-family: var(--font-heading);
-    font-size: clamp(36px, 6vw, 60px);
-    font-style: italic; font-weight: 400;
-    margin-bottom: 14px; color: var(--text);
-  }
+  .success-screen h2 { font-family: var(--font-heading); font-size: clamp(36px, 6vw, 60px); font-style: italic; font-weight: 400; margin-bottom: 14px; color: var(--text); }
   .success-screen p { font-size: 15px; color: var(--muted); max-width: 400px; line-height: 1.7; margin-bottom: 32px; }
-  .back-link {
-    font-size: 11px; font-weight: 600; letter-spacing: 2px;
-    text-transform: uppercase; color: rgba(255,255,255,.5);
-    text-decoration: none;
-  }
+  .back-link { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.5); text-decoration: none; }
   .back-link:hover { text-decoration: underline; }
 
-  /* Error */
-  .err-msg {
-    background: rgba(248,113,113,.1); color: #f87171;
-    border: 1px solid rgba(248,113,113,.2);
-    border-radius: 8px; padding: 12px 16px;
-    font-size: 13px; margin-top: 16px; display: none;
-  }
+  .err-msg { background: rgba(248,113,113,.1); color: #f87171; border: 1px solid rgba(248,113,113,.2); border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-top: 16px; display: none; }
   .err-msg.show { display: block; }
 
   @media (max-width: 600px) {
@@ -288,7 +183,6 @@
         <div class="q-title">What's your name?</div>
         <input class="input-field" type="text" id="q_name" placeholder="Full name" autocomplete="name" required/>
       </div>
-
       <div class="q-divider"></div>
 
       <!-- Q2: WhatsApp -->
@@ -297,7 +191,6 @@
         <div class="q-title">Your WhatsApp number?</div>
         <input class="input-field" type="tel" id="q_phone" placeholder="+91 98765 43210" autocomplete="tel" required/>
       </div>
-
       <div class="q-divider"></div>
 
       <!-- Q3: Location -->
@@ -315,7 +208,6 @@
           <input class="input-field" type="text" id="locationOtherText" placeholder="Tell us where…"/>
         </div>
       </div>
-
       <div class="q-divider"></div>
 
       <!-- Q4: Experience -->
@@ -329,7 +221,6 @@
           <label><input type="radio" name="experience" value="1+ years" class="opt-label"/><span class="opt-btn">1+ years</span></label>
         </div>
       </div>
-
       <div class="q-divider"></div>
 
       <!-- Q5: Level -->
@@ -345,28 +236,11 @@
           <div class="scale-item"><label><input type="radio" name="level" value="Tournament (5)" class="opt-label"/><span class="opt-btn">5</span></label></div>
         </div>
       </div>
-
       <div class="q-divider"></div>
 
-      <!-- Q6: Glass wall -->
+      <!-- Q6: Frequency -->
       <div class="q-block">
-        <div class="q-label">06 — Technique</div>
-        <div class="q-title">How comfortable are you hitting off the glass wall?</div>
-        <div class="q-sub">1 = Not at all &nbsp;·&nbsp; 5 = Very comfortable</div>
-        <div class="scale-wrap">
-          <div class="scale-item"><label><input type="radio" name="glass" value="1" class="opt-label"/><span class="opt-btn">1</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="2" class="opt-label"/><span class="opt-btn">2</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="3" class="opt-label"/><span class="opt-btn">3</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="4" class="opt-label"/><span class="opt-btn">4</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="5" class="opt-label"/><span class="opt-btn">5</span></label></div>
-        </div>
-      </div>
-
-      <div class="q-divider"></div>
-
-      <!-- Q7: Frequency -->
-      <div class="q-block">
-        <div class="q-label">07 — Availability</div>
+        <div class="q-label">06 — Availability</div>
         <div class="q-title">How often can you play per week?</div>
         <div class="options-grid cols-2">
           <label><input type="radio" name="frequency" value="1x" class="opt-label"/><span class="opt-btn">1× a week</span></label>
@@ -375,12 +249,11 @@
           <label><input type="radio" name="frequency" value="Regularly" class="opt-label"/><span class="opt-btn">I'm down to play regularly</span></label>
         </div>
       </div>
-
       <div class="q-divider"></div>
 
-      <!-- Q8: Value (multi-select) -->
+      <!-- Q7: Community Value (multi-select) -->
       <div class="q-block">
-        <div class="q-label">08 — Community</div>
+        <div class="q-label">07 — Community</div>
         <div class="q-title">What would make this community valuable for you?</div>
         <div class="q-sub">Select all that apply.</div>
         <div class="options-grid cols-2">
@@ -398,12 +271,11 @@
           <input class="input-field" type="text" id="valueOtherText" placeholder="Tell us more…"/>
         </div>
       </div>
-
       <div class="q-divider"></div>
 
-      <!-- Q9: Instagram -->
+      <!-- Q8: Instagram -->
       <div class="q-block">
-        <div class="q-label">09 — Instagram</div>
+        <div class="q-label">08 — Instagram</div>
         <div class="q-title">Your Instagram handle?</div>
         <input class="input-field" type="text" id="q_instagram" placeholder="@yourhandle"/>
         <div class="insta-note">
@@ -416,10 +288,24 @@
           </div>
         </div>
       </div>
-
       <div class="q-divider"></div>
 
-      <!-- Q10: Open ended -->
+      <!-- Q9: Glass wall -->
+      <div class="q-block">
+        <div class="q-label">09 — Technique</div>
+        <div class="q-title">How comfortable are you hitting off the glass wall?</div>
+        <div class="q-sub">1 = Not at all &nbsp;·&nbsp; 5 = Very comfortable</div>
+        <div class="scale-wrap">
+          <div class="scale-item"><label><input type="radio" name="glass" value="1" class="opt-label"/><span class="opt-btn">1</span></label></div>
+          <div class="scale-item"><label><input type="radio" name="glass" value="2" class="opt-label"/><span class="opt-btn">2</span></label></div>
+          <div class="scale-item"><label><input type="radio" name="glass" value="3" class="opt-label"/><span class="opt-btn">3</span></label></div>
+          <div class="scale-item"><label><input type="radio" name="glass" value="4" class="opt-label"/><span class="opt-btn">4</span></label></div>
+          <div class="scale-item"><label><input type="radio" name="glass" value="5" class="opt-label"/><span class="opt-btn">5</span></label></div>
+        </div>
+      </div>
+      <div class="q-divider"></div>
+
+      <!-- Q10: Vision (optional) -->
       <div class="q-block">
         <div class="q-label">10 — Vision</div>
         <div class="q-title">If you were building Delhi's padel scene from scratch, what would you do?</div>
@@ -438,7 +324,7 @@
   </div>
 </div>
 
-<!-- SUCCESS SCREEN -->
+<!-- SUCCESS -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">🎾</div>
   <h2>You're on the list.</h2>
@@ -449,7 +335,7 @@
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAqRDFOA8gS2P6vBIQpONcjXlh8f64wdAcRE8xuEpPrlrRIX02KgOScVrpM3AcLugy/exec";
 
-// ── "Other" toggles ──────────────────────────────────────
+// ── "Other" toggles
 document.querySelectorAll('input[name="location"]').forEach(r => {
   r.addEventListener("change", () => {
     document.getElementById("locationOtherWrap").classList.toggle("show", r.value === "Other" && r.checked);
@@ -459,7 +345,7 @@ document.getElementById("valueOtherCheck").addEventListener("change", e => {
   document.getElementById("valueOtherWrap").classList.toggle("show", e.target.checked);
 });
 
-// ── Progress tracking ─────────────────────────────────────
+// ── Progress (9 required fields)
 const TOTAL = 9;
 function updateProgress() {
   let done = 0;
@@ -468,38 +354,39 @@ function updateProgress() {
   if (document.querySelector('input[name="location"]:checked')) done++;
   if (document.querySelector('input[name="experience"]:checked')) done++;
   if (document.querySelector('input[name="level"]:checked')) done++;
-  if (document.querySelector('input[name="glass"]:checked')) done++;
   if (document.querySelector('input[name="frequency"]:checked')) done++;
   if (document.querySelectorAll('input[name="value"]:checked').length > 0) done++;
   if (document.getElementById("q_instagram").value.trim()) done++;
-  document.getElementById("progressFill").style.width = `${Math.round(done/TOTAL*100)}%`;
+  if (document.querySelector('input[name="glass"]:checked')) done++;
+  document.getElementById("progressFill").style.width = `${Math.round(done / TOTAL * 100)}%`;
   document.getElementById("progressText").textContent = `${done} / ${TOTAL}`;
 }
 document.getElementById("applyForm").addEventListener("input", updateProgress);
 document.getElementById("applyForm").addEventListener("change", updateProgress);
 
-// ── Submit ────────────────────────────────────────────────
+// ── Submit
 document.getElementById("applyForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const errEl = document.getElementById("errMsg");
   const btn   = document.getElementById("submitBtn");
 
-  // Validation
+  // Collect values
   const name      = document.getElementById("q_name").value.trim();
   const phone     = document.getElementById("q_phone").value.trim();
   const location  = document.querySelector('input[name="location"]:checked')?.value || "";
   const locOther  = document.getElementById("locationOtherText").value.trim();
   const exp       = document.querySelector('input[name="experience"]:checked')?.value || "";
   const level     = document.querySelector('input[name="level"]:checked')?.value || "";
-  const glass     = document.querySelector('input[name="glass"]:checked')?.value || "";
   const freq      = document.querySelector('input[name="frequency"]:checked')?.value || "";
   const values    = [...document.querySelectorAll('input[name="value"]:checked')].map(c => c.value);
   const valOther  = document.getElementById("valueOtherText").value.trim();
   const instagram = document.getElementById("q_instagram").value.trim();
   const igFollow  = document.getElementById("q_instagram_follow").checked;
+  const glass     = document.querySelector('input[name="glass"]:checked')?.value || "";
   const vision    = document.getElementById("q_vision").value.trim();
 
-  if (!name || !phone || !location || !exp || !level || !glass || !freq || values.length === 0 || !instagram) {
+  // Validate required
+  if (!name || !phone || !location || !exp || !level || !freq || values.length === 0 || !instagram || !glass) {
     errEl.textContent = "Please fill in all required fields before submitting.";
     errEl.classList.add("show");
     errEl.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -511,22 +398,33 @@ document.getElementById("applyForm").addEventListener("submit", async (e) => {
   btn.textContent = "Submitting…";
 
   const finalLocation = location === "Other" ? `Other: ${locOther}` : location;
-  const finalValues   = values.includes("Other") ? [...values.filter(v => v !== "Other"), `Other: ${valOther}`] : values;
+  const finalValues   = values.includes("Other")
+    ? [...values.filter(v => v !== "Other"), `Other: ${valOther}`]
+    : values;
 
+  // ─────────────────────────────────────────────────────────────────
+  // PAYLOAD ORDER matches sheet columns exactly:
+  // Timestamp | Name | Event attended | Girl | Phone | Location |
+  // Experience | Level | Frequency | CommunityValue | Instagram |
+  // Vision | instagramFollowing | Glass wall
+  // ─────────────────────────────────────────────────────────────────
   const payload = {
     action: "addApplication",
     data: {
-      name,
-      phone,
-      location: finalLocation,
-      experience: exp,
-      level,
-      glassWall: glass,
-      frequency: freq,
-      communityValue: finalValues.join(", "),
-      instagram,
-      instagramFollowing: igFollow ? "Yes" : "No",
-      vision,
+      // Col A — Timestamp: auto-set by Apps Script
+      name,                              // Col B — Name
+      eventAttended: "",                 // Col C — Event attended (leave blank, filled manually)
+      girl: "",                          // Col D — Girl (leave blank, filled manually)
+      phone,                             // Col E — Phone
+      location: finalLocation,           // Col F — Location
+      experience: exp,                   // Col G — Experience
+      level,                             // Col H — Level
+      frequency: freq,                   // Col I — Frequency
+      communityValue: finalValues.join(", "), // Col J — CommunityValue
+      instagram,                         // Col K — Instagram
+      vision,                            // Col L — Vision
+      instagramFollowing: igFollow ? "Yes" : "No", // Col M — instagramFollowing
+      glassWall: glass,                  // Col N — How comfortable hitting off glass wall
       submittedAt: new Date().toISOString(),
     }
   };
