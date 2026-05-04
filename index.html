@@ -402,26 +402,20 @@ document.getElementById("applyForm").addEventListener("submit", async (e) => {
     ? [...values.filter(v => v !== "Other"), `Other: ${valOther}`]
     : values;
 
-  // Keys MUST match sheet column headers exactly (case-sensitive)
-  // Sheet: Timestamp | Name | Event attended | Girl | Phone | Location |
-  //        Experience | Level | Frequency | CommunityValue | Instagram |
-  //        Vision | instagramFollowing | How comfortable are you hitting a shot off the glass wall?
   const payload = {
     action: "addApplication",
     data: {
-      "Name":               name,
-      "Event attended":     "",
-      "Girl":               "",
-      "Phone":              phone,
-      "Location":           finalLocation,
-      "Experience":         exp,
-      "Level":              level,
-      "Frequency":          freq,
-      "CommunityValue":     finalValues.join(", "),
-      "Instagram":          instagram,
-      "Vision":             vision,
-      "instagramFollowing": igFollow ? "Yes" : "No",
-      "How comfortable are you hitting a shot off the glass wall?": glass,
+      name,
+      phone,
+      location:           finalLocation,
+      experience:         exp,
+      level,
+      frequency:          freq,
+      communityValue:     finalValues.join(", "),
+      instagram,
+      vision,
+      instagramFollowing: igFollow ? "Yes" : "No",
+      glassWall:          glass,
     }
   };
 
