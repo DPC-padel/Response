@@ -402,30 +402,26 @@ document.getElementById("applyForm").addEventListener("submit", async (e) => {
     ? [...values.filter(v => v !== "Other"), `Other: ${valOther}`]
     : values;
 
-  // ─────────────────────────────────────────────────────────────────
-  // PAYLOAD ORDER matches sheet columns exactly:
-  // Timestamp | Name | Event attended | Girl | Phone | Location |
-  // Experience | Level | Frequency | CommunityValue | Instagram |
-  // Vision | instagramFollowing | Glass wall
-  // ─────────────────────────────────────────────────────────────────
+  // Keys MUST match sheet column headers exactly (case-sensitive)
+  // Sheet: Timestamp | Name | Event attended | Girl | Phone | Location |
+  //        Experience | Level | Frequency | CommunityValue | Instagram |
+  //        Vision | instagramFollowing | How comfortable are you hitting a shot off the glass wall?
   const payload = {
     action: "addApplication",
     data: {
-      // Col A — Timestamp: auto-set by Apps Script
-      name,                              // Col B — Name
-      eventAttended: "",                 // Col C — Event attended (leave blank, filled manually)
-      girl: "",                          // Col D — Girl (leave blank, filled manually)
-      phone,                             // Col E — Phone
-      location: finalLocation,           // Col F — Location
-      experience: exp,                   // Col G — Experience
-      level,                             // Col H — Level
-      frequency: freq,                   // Col I — Frequency
-      communityValue: finalValues.join(", "), // Col J — CommunityValue
-      instagram,                         // Col K — Instagram
-      vision,                            // Col L — Vision
-      instagramFollowing: igFollow ? "Yes" : "No", // Col M — instagramFollowing
-      glassWall: glass,                  // Col N — How comfortable hitting off glass wall
-      submittedAt: new Date().toISOString(),
+      "Name":               name,
+      "Event attended":     "",
+      "Girl":               "",
+      "Phone":              phone,
+      "Location":           finalLocation,
+      "Experience":         exp,
+      "Level":              level,
+      "Frequency":          freq,
+      "CommunityValue":     finalValues.join(", "),
+      "Instagram":          instagram,
+      "Vision":             vision,
+      "instagramFollowing": igFollow ? "Yes" : "No",
+      "How comfortable are you hitting a shot off the glass wall?": glass,
     }
   };
 
