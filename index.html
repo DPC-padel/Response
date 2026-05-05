@@ -11,7 +11,7 @@
   html { scroll-behavior: smooth; }
  @font-face {
   font-family: 'Berling';
-  src: url('Berling Bold.otf') format('opentype'); /* adjust path if needed */
+  src: url('Berling Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 } 
@@ -91,8 +91,28 @@
   .insta-note a:hover { text-decoration: underline; }
 
   .submit-wrap { margin-top: 48px; text-align: center; }
-  .submit-btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 48px; border-radius: 100px; background: var(--accent); color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer; transition: all .22s; }
-  .submit-btn:hover { background: var(--accent-hover); box-shadow: 0 8px 32px var(--accent-glow); transform: translateY(-2px); }
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 48px;
+    border-radius: 100px;
+    background: #1a1714;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all .22s;
+  }
+  .submit-btn:hover {
+    background: #000;
+    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    transform: translateY(-2px);
+  }
   .submit-btn:disabled { background: rgba(0,0,0,.1); color: var(--muted); cursor: not-allowed; transform: none; box-shadow: none; }
   .submit-note { font-size: 11px; color: var(--muted); margin-top: 14px; }
 
@@ -151,7 +171,6 @@
 
     <form id="applyForm" novalidate>
 
-      <!-- Q1 -->
       <div class="q-block">
         <div class="q-label">01 — Basics</div>
         <div class="q-title">What's your name?</div>
@@ -159,7 +178,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q2 -->
       <div class="q-block">
         <div class="q-label">02 — Contact</div>
         <div class="q-title">Your WhatsApp number?</div>
@@ -167,7 +185,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q3 — multi-select location -->
       <div class="q-block">
         <div class="q-label">03 — Where</div>
         <div class="q-title">Where do you prefer to play?</div>
@@ -185,7 +202,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q4 -->
       <div class="q-block">
         <div class="q-label">04 — Experience</div>
         <div class="q-title">How long have you played padel?</div>
@@ -198,11 +214,10 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q5 -->
       <div class="q-block">
         <div class="q-label">05 — Skill Level</div>
         <div class="q-title">How would you rate your level?</div>
-        <div class="q-sub">1 = Beginner &nbsp;·&nbsp; 5 = Tournament ready</div>
+        <div class="q-sub">1 = Beginner · 5 = Tournament ready</div>
         <div class="scale-wrap">
           <div class="scale-item"><label><input type="radio" name="level" value="Beginner (1)" class="opt-label"/><span class="opt-btn">1</span></label></div>
           <div class="scale-item"><label><input type="radio" name="level" value="2" class="opt-label"/><span class="opt-btn">2</span></label></div>
@@ -213,11 +228,10 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q6 — glass wall (moved up from Q9) -->
       <div class="q-block">
         <div class="q-label">06 — Technique</div>
         <div class="q-title">How comfortable are you hitting off the glass wall?</div>
-        <div class="q-sub">1 = Not at all &nbsp;·&nbsp; 5 = Very comfortable</div>
+        <div class="q-sub">1 = Not at all · 5 = Very comfortable</div>
         <div class="scale-wrap">
           <div class="scale-item"><label><input type="radio" name="glass" value="1" class="opt-label"/><span class="opt-btn">1</span></label></div>
           <div class="scale-item"><label><input type="radio" name="glass" value="2" class="opt-label"/><span class="opt-btn">2</span></label></div>
@@ -228,7 +242,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q7 -->
       <div class="q-block">
         <div class="q-label">07 — Availability</div>
         <div class="q-title">How often can you play per week?</div>
@@ -241,7 +254,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q8 -->
       <div class="q-block">
         <div class="q-label">08 — Community</div>
         <div class="q-title">What would make this community valuable for you?</div>
@@ -251,7 +263,7 @@
           <label><input type="checkbox" name="value" value="Playing against strong competition" class="opt-label"/><span class="opt-btn">Playing against strong competition</span></label>
           <label><input type="checkbox" name="value" value="Improving my level seriously" class="opt-label"/><span class="opt-btn">Improving my level seriously</span></label>
           <label><input type="checkbox" name="value" value="Meeting like-minded active people" class="opt-label"/><span class="opt-btn">Meeting like-minded, active people</span></label>
-          <label><input type="checkbox" name="value" value="Health and fitness accountability" class="opt-label"/><span class="opt-btn">Health &amp; fitness accountability</span></label>
+          <label><input type="checkbox" name="value" value="Health and fitness accountability" class="opt-label"/><span class="opt-btn">Health & fitness accountability</span></label>
           <label><input type="checkbox" name="value" value="Tournament opportunities" class="opt-label"/><span class="opt-btn">Tournament opportunities</span></label>
           <label><input type="checkbox" name="value" value="Good competitive fun" class="opt-label"/><span class="opt-btn">Just good competitive fun</span></label>
           <label><input type="checkbox" name="value" value="Coaching" class="opt-label"/><span class="opt-btn">Coaching</span></label>
@@ -263,7 +275,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q9 — Instagram -->
       <div class="q-block">
         <div class="q-label">09 — Instagram</div>
         <div class="q-title">Your Instagram handle?</div>
@@ -280,7 +291,6 @@
       </div>
       <div class="q-divider"></div>
 
-      <!-- Q10 — Vision optional -->
       <div class="q-block">
         <div class="q-label">10 — Vision</div>
         <div class="q-title">If you were building Delhi's padel scene from scratch, what would you do?</div>
@@ -309,7 +319,6 @@
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAqRDFOA8gS2P6vBIQpONcjXlh8f64wdAcRE8xuEpPrlrRIX02KgOScVrpM3AcLugy/exec";
 
-// Other toggles
 document.getElementById("locationOtherCheck").addEventListener("change", e => {
   document.getElementById("locationOtherWrap").classList.toggle("show", e.target.checked);
 });
@@ -317,7 +326,6 @@ document.getElementById("valueOtherCheck").addEventListener("change", e => {
   document.getElementById("valueOtherWrap").classList.toggle("show", e.target.checked);
 });
 
-// Progress
 const TOTAL = 9;
 function updateProgress() {
   let done = 0;
@@ -336,7 +344,6 @@ function updateProgress() {
 document.getElementById("applyForm").addEventListener("input", updateProgress);
 document.getElementById("applyForm").addEventListener("change", updateProgress);
 
-// Submit
 document.getElementById("applyForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const errEl = document.getElementById("errMsg");
