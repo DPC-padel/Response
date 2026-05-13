@@ -9,14 +9,14 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
- @font-face {
-  font-family: 'Berling';
-  src: url('Berling Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-} 
- :root {
-   --font-heading: 'Berling', Georgia, serif;
+  @font-face {
+    font-family: 'Berling';
+    src: url('Berling Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  :root {
+    --font-heading: 'Berling', Georgia, serif;
     --font-body: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     --accent: #CB5957;
     --accent-hover: #b84644;
@@ -70,6 +70,7 @@
 
   .options-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .options-grid.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .options-grid.cols-1 { display: grid; grid-template-columns: 1fr; gap: 8px; }
 
   .opt-label { display: none; }
   .opt-btn { display: block; width: 100%; background: var(--surface); border: 1px solid var(--border-dk); border-radius: 8px; padding: 13px 18px; color: var(--muted); font-family: var(--font-body); font-size: 13px; text-align: left; cursor: pointer; transition: all .18s; line-height: 1.3; }
@@ -86,33 +87,67 @@
 
   .q-divider { height: 1px; background: var(--border); margin: 40px 0; }
 
+  /* Skill gate notice */
+  .skill-gate-notice {
+    display: none;
+    background: var(--accent-light);
+    border: 1px solid var(--accent-glow);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgba(0,0,0,.55);
+    line-height: 1.6;
+  }
+  .skill-gate-notice.show { display: block; animation: fadeUp .3s ease both; }
+  .skill-gate-notice strong { color: var(--accent); font-weight: 600; }
+
+  /* Advanced section */
+  .advanced-section {
+    display: none !important;
+    border-left: 2px solid var(--accent);
+    padding-left: 28px;
+    margin-left: 0;
+  }
+  .advanced-section.show { display: block !important; animation: fadeUp .4s ease both; }
+
+  /* Skill gate notice */
+  .adv-badge {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--accent-glow);
+    margin-bottom: 28px;
+  }
+
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-light);
+    border: 1px solid var(--accent-glow);
+    color: var(--accent);
+    font-size: 12px; font-weight: 600;
+    padding: 8px 16px; border-radius: 100px;
+  }
+
   .insta-note { background: var(--accent-light); border: 1px solid rgba(203,89,87,.2); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: rgba(0,0,0,.55); margin-top: 10px; line-height: 1.5; }
   .insta-note a { color: var(--accent); text-decoration: none; }
   .insta-note a:hover { text-decoration: underline; }
 
   .submit-wrap { margin-top: 48px; text-align: center; }
   .submit-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 18px 48px;
-    border-radius: 100px;
-    background: #1a1714;
-    color: #fff;
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: all .22s;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 18px 48px; border-radius: 100px;
+    background: #1a1714; color: #fff;
+    font-family: var(--font-body); font-size: 13px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all .22s;
   }
-  .submit-btn:hover {
-    background: #000;
-    box-shadow: 0 8px 32px rgba(0,0,0,.18);
-    transform: translateY(-2px);
-  }
+  .submit-btn:hover { background: #000; box-shadow: 0 8px 32px rgba(0,0,0,.18); transform: translateY(-2px); }
   .submit-btn:disabled { background: rgba(0,0,0,.1); color: var(--muted); cursor: not-allowed; transform: none; box-shadow: none; }
   .submit-note { font-size: 11px; color: var(--muted); margin-top: 14px; }
 
@@ -127,12 +162,48 @@
   .err-msg { background: rgba(203,89,87,.08); color: var(--accent); border: 1px solid rgba(203,89,87,.2); border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-top: 16px; display: none; }
   .err-msg.show { display: block; }
 
-  @media (max-width: 600px) {
+  /* Locked level option */
+  .opt-btn-locked {
+    opacity: .32;
+    cursor: not-allowed !important;
+    pointer-events: none;
+  }
+  label.level-locked { cursor: not-allowed; }
+  label.level-locked .opt-btn {
+    opacity: .32;
+    cursor: not-allowed;
+    background: var(--card) !important;
+    border-color: var(--border) !important;
+    color: var(--muted) !important;
+  }
+
+  /* Rating group tag colours */
+
+  /* Locked level option */
+  label.level-locked { cursor: not-allowed; }
+  label.level-locked .opt-btn {
+    opacity: .32 !important;
+    cursor: not-allowed !important;
+    background: var(--card) !important;
+    border-color: var(--border) !important;
+    color: var(--muted) !important;
+  }
+  /* Rating group tag colours */
+  .tag-initiation    { background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.1); color: rgba(0,0,0,.45); }
+  .tag-init-int      { background: rgba(100,149,237,.1); border-color: rgba(100,149,237,.25); color: #4060b0; }
+  .tag-intermediate  { background: rgba(34,139,34,.08); border-color: rgba(34,139,34,.2); color: #2a7a2a; }
+  .tag-int-high      { background: rgba(203,89,87,.07); border-color: var(--accent-glow); color: var(--accent); }
+  .tag-lower-int     { background: rgba(60,120,200,.08); border-color: rgba(60,120,200,.2); color: #2a5fa0; }
+  .tag-int-advanced  { background: rgba(203,89,87,.12); border-color: rgba(203,89,87,.3); color: #a03d3b; }
+  .tag-advanced      { background: rgba(90,30,120,.08); border-color: rgba(90,30,120,.2); color: #5a1e78; }
+
+    @media (max-width: 600px) {
     nav { padding: 0 20px; }
     .hero { padding: 100px 20px 48px; }
     .form-wrap { padding: 0 20px 80px; }
     .options-grid.cols-2 { grid-template-columns: 1fr; }
     .scale-item .opt-btn { padding: 12px 6px; }
+    .advanced-section { padding-left: 16px; }
   }
 </style>
 </head>
@@ -171,6 +242,7 @@
 
     <form id="applyForm" novalidate>
 
+      <!-- 01 Name -->
       <div class="q-block">
         <div class="q-label">01 — Basics</div>
         <div class="q-title">What's your name?</div>
@@ -178,6 +250,7 @@
       </div>
       <div class="q-divider"></div>
 
+      <!-- 02 Phone -->
       <div class="q-block">
         <div class="q-label">02 — Contact</div>
         <div class="q-title">Your WhatsApp number?</div>
@@ -185,6 +258,7 @@
       </div>
       <div class="q-divider"></div>
 
+      <!-- 03 Location -->
       <div class="q-block">
         <div class="q-label">03 — Where</div>
         <div class="q-title">Where do you prefer to play?</div>
@@ -202,11 +276,12 @@
       </div>
       <div class="q-divider"></div>
 
+      <!-- 04 Experience -->
       <div class="q-block">
         <div class="q-label">04 — Experience</div>
         <div class="q-title">How long have you played padel?</div>
         <div class="options-grid cols-2">
-          <label><input type="radio" name="experience" value="Never played" class="opt-label"/><span class="opt-btn">Never played</span></label>
+          <label><input type="radio" name="experience" value="Never played" class="opt-label" id="exp_never"/><span class="opt-btn">Never played</span></label>
           <label><input type="radio" name="experience" value="0-3 months" class="opt-label"/><span class="opt-btn">0–3 months</span></label>
           <label><input type="radio" name="experience" value="3-12 months" class="opt-label"/><span class="opt-btn">3–12 months</span></label>
           <label><input type="radio" name="experience" value="1+ years" class="opt-label"/><span class="opt-btn">1+ years</span></label>
@@ -214,48 +289,104 @@
       </div>
       <div class="q-divider"></div>
 
+      <!-- 05 Skill Level -->
       <div class="q-block">
         <div class="q-label">05 — Skill Level</div>
-        <div class="q-title">How would you rate your level?</div>
-        <div class="q-sub">1 = Beginner · 5 = Tournament ready</div>
-        <div class="scale-wrap">
-          <div class="scale-item"><label><input type="radio" name="level" value="Beginner (1)" class="opt-label"/><span class="opt-btn">1</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="level" value="2" class="opt-label"/><span class="opt-btn">2</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="level" value="3" class="opt-label"/><span class="opt-btn">3</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="level" value="4" class="opt-label"/><span class="opt-btn">4</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="level" value="Tournament (5)" class="opt-label"/><span class="opt-btn">5</span></label></div>
+        <div class="q-title">How would you describe your level?</div>
+        <div class="options-grid cols-2" id="levelOptions">
+          <label id="label_beginner"><input type="radio" name="level" value="Beginner" class="opt-label" id="level_beginner"/><span class="opt-btn">Beginner</span></label>
+          <label id="label_intermediate"><input type="radio" name="level" value="Intermediate" class="opt-label" id="level_intermediate"/><span class="opt-btn">Intermediate</span></label>
+          <label id="label_advanced"><input type="radio" name="level" value="Advanced" class="opt-label" id="level_advanced"/><span class="opt-btn">Advanced</span></label>
+        </div>
+        <div class="skill-gate-notice" id="expGateNotice" style="display:none;margin-top:12px">
+          With less than 3 months of experience, you'll be placed as <strong>Beginner</strong> for now — that's perfectly fine! You'll move up quickly as you play.
+        </div>
+
+        <!-- Gate notice -->
+        <div class="skill-gate-notice" id="skillGateNotice">
+          Since you've played before, we'll ask about a few specific skills — this helps us place you in the right group from day one.
         </div>
       </div>
       <div class="q-divider"></div>
 
-      <div class="q-block">
-        <div class="q-label">06 — Technique</div>
-        <div class="q-title">How comfortable are you hitting off the glass wall?</div>
-        <div class="q-sub">1 = Not at all · 5 = Very comfortable</div>
-        <div class="scale-wrap">
-          <div class="scale-item"><label><input type="radio" name="glass" value="1" class="opt-label"/><span class="opt-btn">1</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="2" class="opt-label"/><span class="opt-btn">2</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="3" class="opt-label"/><span class="opt-btn">3</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="4" class="opt-label"/><span class="opt-btn">4</span></label></div>
-          <div class="scale-item"><label><input type="radio" name="glass" value="5" class="opt-label"/><span class="opt-btn">5</span></label></div>
-        </div>
-      </div>
-      <div class="q-divider"></div>
+      <!-- ADVANCED SKILL QUESTIONS (shown for Intermediate / Advanced) -->
+      <div class="advanced-section" id="advancedSection">
+        <div class="adv-badge">Skill assessment</div>
 
-      <div class="q-block">
-        <div class="q-label">07 — Availability</div>
-        <div class="q-title">How often can you play per week?</div>
-        <div class="options-grid cols-2">
-          <label><input type="radio" name="frequency" value="1x" class="opt-label"/><span class="opt-btn">1× a week</span></label>
-          <label><input type="radio" name="frequency" value="2x" class="opt-label"/><span class="opt-btn">2× a week</span></label>
-          <label><input type="radio" name="frequency" value="3-4x" class="opt-label"/><span class="opt-btn">3–4× a week</span></label>
-          <label><input type="radio" name="frequency" value="Regularly" class="opt-label"/><span class="opt-btn">I'm down to play regularly</span></label>
+        <!-- Wall Play -->
+        <div class="q-block">
+          <div class="q-label">06 — Wall play</div>
+          <div class="q-title">How comfortable are you playing shots off the glass?</div>
+          <div class="options-grid cols-1">
+            <label><input type="radio" name="wall" value="0" class="opt-label"/><span class="opt-btn">Never tried</span></label>
+            <label><input type="radio" name="wall" value="1" class="opt-label"/><span class="opt-btn">Can return basic rebounds</span></label>
+            <label><input type="radio" name="wall" value="2" class="opt-label"/><span class="opt-btn">Can control direction after wall</span></label>
+            <label><input type="radio" name="wall" value="3" class="opt-label"/><span class="opt-btn">Can use walls offensively</span></label>
+          </div>
         </div>
-      </div>
-      <div class="q-divider"></div>
+        <div class="q-divider"></div>
 
+        <!-- Serve -->
+        <div class="q-block">
+          <div class="q-label">07 — Serve quality</div>
+          <div class="q-title">How consistent is your serve?</div>
+          <div class="options-grid cols-1">
+            <label><input type="radio" name="serve" value="0" class="opt-label"/><span class="opt-btn">Often faults</span></label>
+            <label><input type="radio" name="serve" value="1" class="opt-label"/><span class="opt-btn">Gets it in but weak</span></label>
+            <label><input type="radio" name="serve" value="2" class="opt-label"/><span class="opt-btn">Consistent + directional</span></label>
+            <label><input type="radio" name="serve" value="3" class="opt-label"/><span class="opt-btn">Can place + create advantage</span></label>
+          </div>
+        </div>
+        <div class="q-divider"></div>
+
+        <!-- Smash -->
+        <div class="q-block">
+          <div class="q-label">08 — Smash ability</div>
+          <div class="q-title">Which smashes can you execute?</div>
+          <div class="options-grid cols-1">
+            <label><input type="radio" name="smash" value="0" class="opt-label"/><span class="opt-btn">Cannot smash</span></label>
+            <label><input type="radio" name="smash" value="1" class="opt-label"/><span class="opt-btn">Basic flat smash</span></label>
+            <label><input type="radio" name="smash" value="2" class="opt-label"/><span class="opt-btn">Controlled smash</span></label>
+            <label><input type="radio" name="smash" value="3" class="opt-label"/><span class="opt-btn">Can do bandeja / vibora</span></label>
+          </div>
+        </div>
+        <div class="q-divider"></div>
+
+        <!-- Doubles -->
+        <div class="q-block">
+          <div class="q-label">09 — Doubles coordination</div>
+          <div class="q-title">How well do you play with a partner?</div>
+          <div class="options-grid cols-1">
+            <label><input type="radio" name="doubles" value="0" class="opt-label"/><span class="opt-btn">No coordination</span></label>
+            <label><input type="radio" name="doubles" value="1" class="opt-label"/><span class="opt-btn">Basic understanding</span></label>
+            <label><input type="radio" name="doubles" value="2" class="opt-label"/><span class="opt-btn">Good communication</span></label>
+            <label><input type="radio" name="doubles" value="3" class="opt-label"/><span class="opt-btn">Advanced tactics (switching, covering)</span></label>
+          </div>
+        </div>
+        <div class="q-divider"></div>
+
+        <!-- Return -->
+        <div class="q-block">
+          <div class="q-label">10 — Return of serve</div>
+          <div class="q-title">How strong is your return?</div>
+          <div class="options-grid cols-1">
+            <label><input type="radio" name="ret" value="0" class="opt-label"/><span class="opt-btn">Weak returns</span></label>
+            <label><input type="radio" name="ret" value="1" class="opt-label"/><span class="opt-btn">Just put ball in play</span></label>
+            <label><input type="radio" name="ret" value="2" class="opt-label"/><span class="opt-btn">Controlled returns</span></label>
+            <label><input type="radio" name="ret" value="3" class="opt-label"/><span class="opt-btn">Aggressive + tactical returns</span></label>
+          </div>
+        </div>
+        <div class="q-divider"></div>
+
+          </div>
+          <div class="rating-note">This score is for internal placement only and will update as you play with us.</div>
+        </div>
+
+      </div><!-- /advanced-section -->
+
+      <!-- 12 Community -->
       <div class="q-block">
-        <div class="q-label">08 — Community</div>
+        <div class="q-label" id="communityLabel">07 — Community</div>
         <div class="q-title">What would make this community valuable for you?</div>
         <div class="q-sub">Select all that apply.</div>
         <div class="options-grid cols-2">
@@ -275,8 +406,9 @@
       </div>
       <div class="q-divider"></div>
 
+      <!-- 13 Instagram -->
       <div class="q-block">
-        <div class="q-label">09 — Instagram</div>
+        <div class="q-label" id="instaLabel">08 — Instagram</div>
         <div class="q-title">Your Instagram handle?</div>
         <input class="input-field" type="text" id="q_instagram" placeholder="@yourhandle"/>
         <div class="insta-note">
@@ -291,8 +423,9 @@
       </div>
       <div class="q-divider"></div>
 
+      <!-- 14 Vision -->
       <div class="q-block">
-        <div class="q-label">10 — Vision</div>
+        <div class="q-label" id="visionLabel">09 — Vision</div>
         <div class="q-title">If you were building Delhi's padel scene from scratch, what would you do?</div>
         <div class="q-sub">Optional — but we love hearing this.</div>
         <textarea class="input-field" id="q_vision" placeholder="Share your thoughts…" rows="4"></textarea>
@@ -319,6 +452,7 @@
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAqRDFOA8gS2P6vBIQpONcjXlh8f64wdAcRE8xuEpPrlrRIX02KgOScVrpM3AcLugy/exec";
 
+// ── "Other" toggles ──────────────────────────────────────────
 document.getElementById("locationOtherCheck").addEventListener("change", e => {
   document.getElementById("locationOtherWrap").classList.toggle("show", e.target.checked);
 });
@@ -326,16 +460,197 @@ document.getElementById("valueOtherCheck").addEventListener("change", e => {
   document.getElementById("valueOtherWrap").classList.toggle("show", e.target.checked);
 });
 
-const TOTAL = 9;
+// ── Experience gates level options ───────────────────────────
+// Never played or 0-3 months → lock Intermediate & Advanced
+function applyExperienceGate() {
+  const exp = document.querySelector('input[name="experience"]:checked')?.value || "";
+  const isLocked = exp === "Never played" || exp === "0-3 months";
+
+  const intLabel = document.getElementById("label_intermediate");
+  const advLabel = document.getElementById("label_advanced");
+  const intInput = document.getElementById("level_intermediate");
+  const advInput = document.getElementById("level_advanced");
+  const expGate  = document.getElementById("expGateNotice");
+
+  if (isLocked) {
+    // Lock the options
+    intLabel.classList.add("level-locked");
+    advLabel.classList.add("level-locked");
+    intInput.disabled = true;
+    advInput.disabled = true;
+    expGate.style.display = "block";
+    // If they had one selected, force Beginner
+    if (intInput.checked || advInput.checked) {
+      intInput.checked = false;
+      advInput.checked = false;
+      document.getElementById("level_beginner").checked = true;
+      showHideAdvanced();
+    }
+  } else {
+    intLabel.classList.remove("level-locked");
+    advLabel.classList.remove("level-locked");
+    intInput.disabled = false;
+    advInput.disabled = false;
+    expGate.style.display = "none";
+  }
+}
+
+document.querySelectorAll('input[name="experience"]').forEach(r =>
+  r.addEventListener("change", () => { applyExperienceGate(); showHideAdvanced(); updateProgress(); })
+);
+
+// ── Skill-level branching ────────────────────────────────────
+const advSection = document.getElementById("advancedSection");
+const gateNotice = document.getElementById("skillGateNotice");
+
+function getSkillMode() {
+  const checked = document.querySelector('input[name="level"]:checked');
+  return checked ? checked.value : null;
+}
+
+function showHideAdvanced() {
+  const mode  = getSkillMode();
+  const isAdv = mode === "Intermediate" || mode === "Advanced";
+
+  if (isAdv) {
+    gateNotice.classList.add("show");
+    advSection.classList.add("show");
+  } else {
+    gateNotice.classList.remove("show");
+    advSection.classList.remove("show");
+  }
+
+  const base = isAdv ? 11 : 6;
+  document.getElementById("communityLabel").textContent = String(base).padStart(2,"0")   + " — Community";
+  document.getElementById("instaLabel").textContent     = String(base+1).padStart(2,"0") + " — Instagram";
+  document.getElementById("visionLabel").textContent    = String(base+2).padStart(2,"0") + " — Vision";
+
+  if (isAdv) updateRating();
+  updateProgress();
+}
+
+document.querySelectorAll('input[name="level"]').forEach(r =>
+  r.addEventListener("change", showHideAdvanced)
+);
+
+// ── Rating calculation — aligned to Playtomic 0–7 scale ──────
+//
+// DESIGN:
+//   Beginner                → 0.5  (Initiation)
+//   Intermediate + skills   → 1.5 – 3.5  (Init-Int → Intermediate)
+//   Advanced + skills       → 3.5 – 5.0  (Intermediate → Int-Advanced)
+//
+// FORMULA:
+//   baseScore  = experience anchor (sets the floor)
+//   skillScore = weighted skill answers (adds up to skillCeiling)
+//   final      = baseScore + skillScore, clamped to level ceiling, rounded to 0.5
+//
+// WEIGHTS (out of 3 each, reflect Playtomic criteria):
+//   Wall play     1.4  — most padel-specific, hardest to fake
+//   Smash         1.2  — bandeja/vibora = clear Advanced marker
+//   Return        1.0  — tactical reading
+//   Doubles coord 1.0  — position + communication
+//   Serve         0.8  — least differentiating at beginner–int range
+
+const WEIGHTS = { wall: 1.4, smash: 1.2, ret: 1.0, doubles: 1.0, serve: 0.8 };
+const W_MAX   = Object.values(WEIGHTS).reduce((a,b) => a + b, 0); // 5.4 — sum of weights only
+
+function getSkillScore(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? parseInt(el.value) : null;
+}
+
+// Base score from experience (floor for that Playtomic range)
+function expBase(exp) {
+  if (exp === "Never played")  return 0.0;
+  if (exp === "0-3 months")    return 0.5;
+  if (exp === "3-12 months")   return 1.0;
+  if (exp === "1+ years")      return 1.5;
+  return 0.5;
+}
+
+// Per-level ceiling — Advanced can go to 6.0
+// Scale:
+//   Never played / Beginner  → 0.0 – 2.0  (Initiation / Beginner)
+//   Intermediate             → 2.5 – 4.5  (Lower Int → Intermediate)
+//   Advanced                 → 4.5 – 6.0  (Upper Int → Advanced)
+function levelCeiling(level) {
+  if (level === "Advanced")     return 6.0;
+  if (level === "Intermediate") return 4.5;
+  return 2.0;
+}
+
+// Full Playtomic-aligned group labels per your scale
+function playtomicGroup(score) {
+  if (score <= 1.0) return { label: "Beginner",            cls: "tag-initiation"   };
+  if (score <= 2.0) return { label: "Initiation",          cls: "tag-init-int"     };
+  if (score <= 2.5) return { label: "Lower Intermediate",  cls: "tag-lower-int"    };
+  if (score <= 3.5) return { label: "Lower Intermediate",  cls: "tag-lower-int"    };
+  if (score <= 4.5) return { label: "Intermediate",        cls: "tag-intermediate" };
+  if (score <= 5.5) return { label: "Upper Intermediate",  cls: "tag-int-high"     };
+  if (score <= 6.0) return { label: "Advanced",            cls: "tag-advanced"     };
+  return { label: "Elite", cls: "tag-advanced" };
+}
+
+function updateRating() {
+  const mode = getSkillMode();
+  if (mode !== "Intermediate" && mode !== "Advanced") return;
+
+  const skills      = ["wall","smash","ret","doubles","serve"];
+  const allAnswered = skills.every(s => getSkillScore(s) !== null);
+  if (!allAnswered) { ratingCard.classList.remove("show"); return; }
+
+  const exp = document.querySelector('input[name="experience"]:checked')?.value || "";
+
+  // Skill contribution: 0–1 normalised, scaled to 0–3.5 points
+  // (larger range so Advanced can reach 6.0)
+  let rawSkill = 0;
+  skills.forEach(s => { rawSkill += (getSkillScore(s) / 3) * WEIGHTS[s]; });
+  const normSkill = (rawSkill / W_MAX) * 3.5;
+
+  // expBase gives 0–1.5 floor
+  // Advanced bonus +0.5 extra ceiling lift
+  // Advanced + 1yr + all max = 1.5 + 3.5 + 0.5 = 5.5 → rounds to 5.5
+  // Advanced + 1yr + max = capped at 6.0 max
+  const base  = expBase(exp);
+  const ceil  = levelCeiling(mode);
+  const bonus = mode === "Advanced" ? 0.5 : 0;
+  const raw   = Math.min(ceil, base + normSkill + bonus);
+  const score = Math.round(raw * 2) / 2; // round to nearest 0.5
+
+  const group = playtomicGroup(score);
+
+  // Update UI
+  document.getElementById("ratingScoreDisplay").textContent = score.toFixed(1);
+
+
+}
+
+document.querySelectorAll('input[name="wall"], input[name="serve"], input[name="smash"], input[name="doubles"], input[name="ret"]')
+  .forEach(r => r.addEventListener("change", updateRating));
+
+// Also re-run rating when experience changes (it affects the base score)
+document.querySelectorAll('input[name="experience"]').forEach(r =>
+  r.addEventListener("change", updateRating)
+);
+
+// ── Progress bar ─────────────────────────────────────────────
 function updateProgress() {
+  const isAdv = getSkillMode() === "Intermediate" || getSkillMode() === "Advanced";
+  const TOTAL = isAdv ? 13 : 8;
   let done = 0;
   if (document.getElementById("q_name").value.trim()) done++;
   if (document.getElementById("q_phone").value.trim()) done++;
   if (document.querySelectorAll('input[name="location"]:checked').length > 0) done++;
   if (document.querySelector('input[name="experience"]:checked')) done++;
   if (document.querySelector('input[name="level"]:checked')) done++;
-  if (document.querySelector('input[name="glass"]:checked')) done++;
-  if (document.querySelector('input[name="frequency"]:checked')) done++;
+  if (isAdv) {
+    if (document.querySelector('input[name="wall"]:checked')) done++;
+    if (document.querySelector('input[name="serve"]:checked')) done++;
+    if (document.querySelector('input[name="smash"]:checked')) done++;
+    if (document.querySelector('input[name="doubles"]:checked')) done++;
+    if (document.querySelector('input[name="ret"]:checked')) done++;
+  }
   if (document.querySelectorAll('input[name="value"]:checked').length > 0) done++;
   if (document.getElementById("q_instagram").value.trim()) done++;
   document.getElementById("progressFill").style.width = `${Math.round(done / TOTAL * 100)}%`;
@@ -344,10 +659,12 @@ function updateProgress() {
 document.getElementById("applyForm").addEventListener("input", updateProgress);
 document.getElementById("applyForm").addEventListener("change", updateProgress);
 
+// ── Submit ───────────────────────────────────────────────────
 document.getElementById("applyForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const errEl = document.getElementById("errMsg");
   const btn   = document.getElementById("submitBtn");
+  const isAdv = getSkillMode() === "Intermediate" || getSkillMode() === "Advanced";
 
   const name      = document.getElementById("q_name").value.trim();
   const phone     = document.getElementById("q_phone").value.trim();
@@ -355,15 +672,24 @@ document.getElementById("applyForm").addEventListener("submit", async (e) => {
   const locOther  = document.getElementById("locationOtherText").value.trim();
   const exp       = document.querySelector('input[name="experience"]:checked')?.value || "";
   const level     = document.querySelector('input[name="level"]:checked')?.value || "";
-  const glass     = document.querySelector('input[name="glass"]:checked')?.value || "";
-  const freq      = document.querySelector('input[name="frequency"]:checked')?.value || "";
   const values    = [...document.querySelectorAll('input[name="value"]:checked')].map(c => c.value);
   const valOther  = document.getElementById("valueOtherText").value.trim();
   const instagram = document.getElementById("q_instagram").value.trim();
   const igFollow  = document.getElementById("q_instagram_follow").checked;
   const vision    = document.getElementById("q_vision").value.trim();
 
-  if (!name || !phone || locations.length === 0 || !exp || !level || !glass || !freq || values.length === 0 || !instagram) {
+  // Skill fields
+  const wall    = document.querySelector('input[name="wall"]:checked')?.value || "";
+  const serve   = document.querySelector('input[name="serve"]:checked')?.value || "";
+  const smash   = document.querySelector('input[name="smash"]:checked')?.value || "";
+  const doubles = document.querySelector('input[name="doubles"]:checked')?.value || "";
+  const ret     = document.querySelector('input[name="ret"]:checked')?.value || "";
+
+  // Validation
+  const missingBasic = !name || !phone || locations.length === 0 || !exp || !level || values.length === 0 || !instagram;
+  const missingAdv   = isAdv && (!wall || !serve || !smash || !doubles || !ret);
+
+  if (missingBasic || missingAdv) {
     errEl.textContent = "Please fill in all required fields before submitting.";
     errEl.classList.add("show");
     errEl.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -374,6 +700,16 @@ document.getElementById("applyForm").addEventListener("submit", async (e) => {
   btn.disabled = true;
   btn.textContent = "Submitting…";
 
+  // Rating string for sheet
+  let ratingStr = "0.5 — Initiation";
+  if (isAdv) {
+    const scoreEl = document.getElementById("ratingScoreDisplay").textContent;
+    ratingStr = scoreEl !== "—" ? `${scoreEl} / 7.0` : "Pending assessment";
+  } else if (level === "Beginner") {
+    const exp2 = document.querySelector('input[name="experience"]:checked')?.value || "";
+    ratingStr = exp2 === "Never played" ? "0.0 — Initiation" : "0.5 — Initiation";
+  }
+
   const finalLocations = locations.includes("Other")
     ? [...locations.filter(v => v !== "Other"), `Other: ${locOther}`]
     : locations;
@@ -381,14 +717,25 @@ document.getElementById("applyForm").addEventListener("submit", async (e) => {
     ? [...values.filter(v => v !== "Other"), `Other: ${valOther}`]
     : values;
 
+  // Wall play label map
+  const wallLabels  = ["Never tried","Can return basic rebounds","Can control direction after wall","Can use walls offensively"];
+  const serveLabels = ["Often faults","Gets it in but weak","Consistent + directional","Can place + create advantage"];
+  const smashLabels = ["Cannot smash","Basic flat smash","Controlled smash","Can do bandeja / vibora"];
+  const doublesLabels = ["No coordination","Basic understanding","Good communication","Advanced tactics"];
+  const retLabels   = ["Weak returns","Just put ball in play","Controlled returns","Aggressive + tactical returns"];
+
   const payload = {
     name,
     phone,
     location:           finalLocations.join(", "),
     experience:         exp,
     level,
-    glassWall:          glass,
-    frequency:          freq,
+    wallPlay:           isAdv ? wallLabels[parseInt(wall)] : "N/A",
+    serveQuality:       isAdv ? serveLabels[parseInt(serve)] : "N/A",
+    smashAbility:       isAdv ? smashLabels[parseInt(smash)] : "N/A",
+    doublesCoord:       isAdv ? doublesLabels[parseInt(doubles)] : "N/A",
+    returnOfServe:      isAdv ? retLabels[parseInt(ret)] : "N/A",
+    onboardingRating:   ratingStr,
     communityValue:     finalValues.join(", "),
     instagram,
     instagramFollowing: igFollow ? "Yes" : "No",
